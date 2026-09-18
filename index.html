@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Etti 💛</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdf6f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #3a2f2f;
+    text-align: center;
+  }
+
+  .card {
+    padding: 48px 32px;
+    max-width: 480px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  p.sub {
+    font-size: 1rem;
+    color: #9a8c8c;
+    margin-bottom: 40px;
+  }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .unit {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .unit .num {
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  .unit .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #9a8c8c;
+    margin-top: 4px;
+  }
+
+  .message {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #5a4a4a;
+  }
+
+  .heart {
+    margin-top: 32px;
+    font-size: 1.5rem;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Counting down to your day, Etti</h1>
+    <p class="sub">19 November</p>
+
+    <div class="timer" id="timer">
+      <div class="unit"><span class="num" id="days">0</span><span class="label">days</span></div>
+      <div class="unit"><span class="num" id="hours">0</span><span class="label">hours</span></div>
+      <div class="unit"><span class="num" id="minutes">0</span><span class="label">min</span></div>
+      <div class="unit"><span class="num" id="seconds">0</span><span class="label">sec</span></div>
+    </div>
+
+    <p class="message">
+      Every day between now and then, I'm just a little more excited<br />
+      to celebrate you. Happy almost-birthday, love.
+    </p>
+
+    <div class="heart">💛</div>
+  </div>
+
+  <script>
+    const target = new Date("2026-11-19T00:00:00");
+
+    function update() {
+      const now = new Date();
+      let diff = target - now;
+
+      if (diff <= 0) {
+        document.querySelector(".card").innerHTML =
+          "<h1>It's your day, Etti! 🎉</h1><p class='message'>Happy Birthday! I love you so much.</p>";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
+</html>
